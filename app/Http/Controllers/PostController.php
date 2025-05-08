@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;  // 引入 Post 模型
+use App\Models\Post;  // Import the Post model
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(10); // 或 Post::all()
+        $posts = Post::latest()->paginate(10); // or Post::all()
         return view('posts.index', compact('posts'));
     }
 
@@ -34,13 +34,13 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        // 保存文章到数据库
+        // Save the post to the database
         Post::create([
             'title' => $request->title,
             'content' => $request->content,
         ]);
 
-        return redirect()->route('posts.index')->with('success', '文章已成功发布！');
+        return redirect()->route('posts.index')->with('success', 'Post successfully published!');
     }
 
     /**
@@ -52,14 +52,14 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    // 编辑文章
+    // Edit the post
     public function edit($id)
     {
         $post = Post::findOrFail($id);
         return view('posts.edit', compact('post'));
     }
 
-    // 更新文章
+    // Update the post
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -73,16 +73,15 @@ class PostController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->route('posts.index')->with('success', '文章已更新！');
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
     }
 
-    // 删除文章
+    // Delete the post
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', '文章已删除！');
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
-
 }

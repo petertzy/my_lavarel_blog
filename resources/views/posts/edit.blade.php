@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h1>编辑文章</h1>
+        <h1>Edit Post</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -19,31 +19,31 @@
             @method('PUT')
 
             <div class="mb-3">
-                <label for="title" class="form-label">标题</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}" required>
-                <small id="titleCount" class="form-text text-muted">{{ strlen($post->title) }} 字</small>
+                <small id="titleCount" class="form-text text-muted">{{ strlen($post->title) }} characters</small>
             </div>
 
             <div class="mb-3">
-                <label for="content" class="form-label">内容</label>
+                <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" id="content" name="content" rows="5" required>{{ old('content', $post->content) }}</textarea>
-                <small id="contentCount" class="form-text text-muted">{{ strlen($post->content) }} 字</small>
+                <small id="contentCount" class="form-text text-muted">{{ strlen($post->content) }} characters</small>
             </div>
 
-            <button type="submit" class="btn btn-success">更新文章</button>
-            <a href="{{ route('posts.index') }}" class="btn btn-secondary">取消</a>
+            <button type="submit" class="btn btn-success">Update Post</button>
+            <a href="{{ route('posts.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 
     <script>
-        // 监听标题输入框的字符变化
+        // Listen for changes in the title input
         document.getElementById('title').addEventListener('input', function () {
-            document.getElementById('titleCount').textContent = this.value.length + ' 字';
+            document.getElementById('titleCount').textContent = this.value.length + ' characters';
         });
 
-        // 监听内容输入框的字符变化
+        // Listen for changes in the content textarea
         document.getElementById('content').addEventListener('input', function () {
-            document.getElementById('contentCount').textContent = this.value.length + ' 字';
+            document.getElementById('contentCount').textContent = this.value.length + ' characters';
         });
     </script>
 @endsection

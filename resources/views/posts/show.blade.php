@@ -4,5 +4,5 @@
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->content }}</p>
 
-    <a href="{{ route('posts.index') }}">返回列表</a>
+    <a href="{{ route('posts.index') }}">Back to List</a>
 @endsection
